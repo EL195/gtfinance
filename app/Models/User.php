@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+///use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
