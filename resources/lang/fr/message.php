@@ -667,6 +667,8 @@ return [
                     'bank-send'          => 'Argent transféré à la banque avec succès',
                     'send-again'         => 'Envoyer de l\'argent à nouveau',
                     'send-to-bank-again' => 'Virement bancaire',
+                    'folow-step' => 'S\'il vous plait veuillez suivre ces étapes pour nous faire parvenir votre interac afin de valider votre transfer',
+                    'send-now' => 'Envoyer maintenant',
 
                 ],
             ],

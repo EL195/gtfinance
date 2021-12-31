@@ -640,6 +640,8 @@ return [
                     'bank-send'          => 'Money Transferred To Bank Successfully',
                     'send-again'         => 'Send Money Again',
                     'send-to-bank-again' => 'Transfer To Bank Again',
+                    'folow-step' => 'Please follow these steps to send us your interac to validate your transfer',
+                    'send-now' => 'Send now',
                 ],
             ],
             'send-to-bank' => [
