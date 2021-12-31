@@ -52,6 +52,9 @@
                         @endif
                     @endif
                     <p class="wel-text">{{ __('Thanks for using') }} <span class="text-primary">{{ getCompanyName() }} </span>{{ __('services') }}</p>
+                         <a href="{{ url('/moneytransfer') }}" style="width: 100%; margin-top:20px;" class="btn btn-primary px-4 py-2 ml-2 mt-4">
+                        {{ __('Send Money') }}
+                    </a>
                 </div>
 
                 <div class="col-md-5 p-4">

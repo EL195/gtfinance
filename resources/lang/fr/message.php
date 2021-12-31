@@ -588,8 +588,8 @@ return [
             'amount'  => 'Montant',
             'fee'     => 'Frais',
             'total'   => 'Total',
-            'mtRecu'   => 'Montant de réception équivalent',
-            'taux'   => 'Taux de change du jour',
+            'mtRecu'   => 'Montant reçu',
+            'taux'   => 'Taux du jour',
 
         ],
         'transaction'   => [

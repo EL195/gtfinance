@@ -35,17 +35,18 @@
                                     <div class="confirm-check"><i class="fa fa-check"></i></div>
                                 </div>
 
-                                <div class="text-center mt-4">
+                           {{--      <div class="text-center mt-4">
                                     <p class="sub-title">@lang('message.dashboard.send-request.request.confirmation.success')!</p>
-                                </div>
+                                </div> --}}
 
                                 <!-- check mail error message-->
                                 @if (!empty($errorMessage))
                                   <div class="text-center">
-                                    <p class="font-weight-600">@lang('message.dashboard.send-request.send.confirmation.money-send') @lang('message.dashboard.mail-not-sent').
-                                           <br/>
+                                    <p class="font-weight-600">
+                                         <br/>
                                    <div style="border-radius:10px; border: 1px solid green; padding:5px;"><span style="color:gren;"> @lang('message.dashboard.send-request.send.confirmation.folow-step')</span><br/>
-                                    <a style="color:blue!important;" href="/interac" target="_blank">@lang('message.dashboard.send-request.send.confirmation.send-now')</a></div></p>
+                                    {{-- <a style="color:blue!important;" href="/interac">@lang('message.dashboard.send-request.send.confirmation.send-now')</a> --}}</div>
+                                    </p>
                                   </div>
                                 @else
                                   <div class="text-center">
@@ -66,8 +67,8 @@
 
                                 <div class="mt-4">
                                     <div class="text-center">
-                                        <a href="{{ url('moneytransfer/print') }}/{{ $transInfo['trans_id'] }}" target="_blank" class="btn btn-grad mr-2 mt-4"><strong>@lang('message.dashboard.vouchers.success.print')</strong></a>
-                                        <a href="{{ url('moneytransfer') }}" class="btn btn-primary px-4 py-2 ml-2 mt-4"><strong>@lang('message.dashboard.send-request.send.confirmation.send-again')</strong></a>
+                                        {{-- <a href="{{ url('moneytransfer/print') }}/{{ $transInfo['trans_id'] }}" target="_blank" class="btn btn-grad mr-2 mt-4"><strong>@lang('message.dashboard.vouchers.success.print')</strong></a> --}}
+                                        <a href="virement-interac" class="btn btn-primary px-4 py-2 ml-2 mt-4"><strong>@lang('message.dashboard.send-request.send.confirmation.send-now')</strong></a>
                                     </div>
                                 </div>
                               </div>
