@@ -340,7 +340,7 @@
                     <!-- Sub title end-->
                 </div>
 
-                <div class="col-lg-4 mt-4">
+           {{--      <div class="col-lg-4 mt-4">
                     <!-- Sub title start -->
                     <div>
                         <h3 class="sub-title">{{ __('Wallet') }}</h3>
@@ -395,7 +395,7 @@
                         @endif
                     </div>
                     <!-- Sub title end-->
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

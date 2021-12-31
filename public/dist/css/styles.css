@@ -1,5 +1,5 @@
 a {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 .text-info {
@@ -102,8 +102,8 @@ a {
 
 .btn-theme {
     color: #fff;
-    background-color: #635BFF;
-    border-color: #635BFF;
+    background-color: #8cc542;
+    border-color: #8cc542;
     padding: 8px 15px;
 }
 
@@ -139,8 +139,8 @@ a {
 
 .btn-primary {
     color: #fff;
-    background-color: #635BFF;
-    border-color: #635BFF;
+    background-color: #8cc542;
+    border-color: #8cc542;
 }
 
 .button-secondary {
@@ -223,22 +223,22 @@ a {
 /*admin/profile/editProfile.blade.php*/
 
 .nav-tabs-custom>.nav-tabs>li.active:first-of-type>a {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active {
-    border-top-color: #635BFF;
+    border-top-color: #8cc542;
 }
 
 .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover {
     background: transparent;
     color: #444;
     border-top: 0;
-    border-left-color: #635bff;
+    border-left-color: #8cc542;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
-    color: #635BFF;
+    color: #8cc542;
 }
 /*admin/user/edit.blade.php*/
 
@@ -424,7 +424,7 @@ a {
     color: red;
 }
 .skin-blue .treeview-menu>li.active>a {
-    background-color: #635BFF;
+    background-color: #8cc542;
     border-left: 0 none !important;
     border-radius: 50px;
     color: #fff !important;
@@ -434,10 +434,10 @@ a {
     min-width: 150px;
 }
 .skin-blue .main-header .navbar .sidebar-toggle:hover {
-    background-color: #635BFF;
+    background-color: #8cc542;
 }
 .skin-blue .sidebar-menu .treeview-menu>li>a:hover {
-    color: #635BFF;
+    color: #8cc542;
 }
 .skin-blue .sidebar-menu .treeview-menu>li>a {
     color: #bdbdbd;
@@ -712,7 +712,7 @@ div.form-group input.form-control,div.form-group select.form-control, .select2-c
 }
 
 form div.form-group textarea.form-control:hover, form div.form-group input.form-control:hover, form div.form-group input.form-control:focus, form div.form-group input.form-control:active,div.form-group select.form-control:hover {
-    border: 1px solid #635BFF;
+    border: 1px solid #8cc542;
     background: #eff3f6;
 }
 
@@ -730,7 +730,7 @@ input[type=number]:focus,
 [type=tel].form-control:focus,
 [contenteditable].form-control:focus {
   box-shadow: inset 0 -1px 0 #fff;
-  border: 1px solid #635BFF;
+  border: 1px solid #8cc542;
 }
 
 .form-control:disabled, .form-control[readonly] {
@@ -783,8 +783,8 @@ table.dataTable thead th, table.dataTable thead td {
 .dataTables_filter input[type=search]:focus {
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #635BFF;
-    outline: 0px solid #635BFF;
+    border: 1px solid #8cc542;
+    outline: 0px solid #8cc542;
 }
 
 .dt-responsive {
@@ -799,9 +799,9 @@ table.dataTable thead th, table.dataTable thead td {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: #635BFF!important;
+    background: #8cc542!important;
     color: #fff!important;
-    border: 1px solid #635BFF!important;
+    border: 1px solid #8cc542!important;
     border-radius: 6px;
     padding: 5px 15px;
 }

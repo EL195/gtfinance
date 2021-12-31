@@ -95,15 +95,15 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: #635BFF!important;
+    color: #8cc542!important;
 }
 
 .light .bg-secondary a:hover {
-    color: #635BFF!important;
+    color: #8cc542!important;
 }
 
 .dark .bg-secondary a:hover {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 .dark .btn-primary a:hover {
@@ -336,7 +336,7 @@ footer {
 }
 
 .border-bottom-active {
-    border-bottom: 2px solid #635BFF!important;
+    border-bottom: 2px solid #8cc542!important;
 }
 
 .dark .border {
@@ -357,12 +357,12 @@ footer {
 
 
 .dark .select-div-active {
-    border: 2px solid #635BFF!important;
+    border: 2px solid #8cc542!important;
     background: var(--primary-dark-body-color);
 }
 
 .light .select-div-active {
-    border: 2px solid #635BFF!important;
+    border: 2px solid #8cc542!important;
     background: var(--primary-light-body-color);
 }
 
@@ -377,7 +377,7 @@ footer {
 
 
 .border-active {
-    border: 2px solid #635BFF!important;
+    border: 2px solid #8cc542!important;
 }
 
 .dark .border-bottom {
@@ -402,7 +402,7 @@ footer {
 }
 
 a:hover .side-text {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 
@@ -471,7 +471,7 @@ a:hover .side-text {
 }
 
 .text-active {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 .text-gray-500 {
@@ -550,7 +550,7 @@ a:hover .side-text {
 }
 
 .short-list a:hover {
-    color: #635BFF!important;
+    color: #8cc542!important;
 }
 
 .side-list:hover {
@@ -562,10 +562,10 @@ a:hover .side-text {
 }
 
 .side-active p {
-    color: #635BFF!important;
+    color: #8cc542!important;
 }
 .side-active svg {
-    fill: #635BFF!important;
+    fill: #8cc542!important;
 }
 
 
@@ -689,7 +689,7 @@ a:hover .side-text {
 }
 
 a:hover .sidebaricon {
-    fill: #635BFF;
+    fill: #8cc542;
 }
 
 
@@ -776,7 +776,7 @@ a:hover .sidebaricon {
 
 .confirm-check {
     padding: 4px 8px;
-    background: #635bff;
+    background: #8cc542;
     border-radius: 25px;
     color: #fff;
 }
@@ -791,12 +791,12 @@ a:hover .sidebaricon {
 }
 
 .btn-primary {
-    background-color: #635BFF;
-    border: 1px solid #635BFF;
+    background-color: #8cc542;
+    border: 1px solid #8cc542;
 }
 
 .bg-primary {
-    background-color: #635BFF!important;
+    background-color: #8cc542!important;
 }
 
 .dark .bg-primary {
@@ -821,12 +821,12 @@ button:focus{
 }
 
 .page-item.active .page-link {
-    background-color: #635bff;
-    border-color: #635bff;
+    background-color: #8cc542;
+    border-color: #8cc542;
 }
 
 .page-link {
-    color: #635bff;
+    color: #8cc542;
 }
 
 .btn-profile {
@@ -867,7 +867,7 @@ button:focus{
 
 
 .text-info {
-    color: #635bff!important;
+    color: #8cc542!important;
     font-size: 16px;
 }
 
@@ -922,12 +922,12 @@ a.text-info:focus, a.text-info:hover {
 
 
 .daterangepicker .ranges li.active {
-    background-color: #635bff!important;
+    background-color: #8cc542!important;
     color: #fff;
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: #635bff!important;
+    background-color: #8cc542!important;
     border-color: transparent;
     color: #fff;
 }
@@ -940,7 +940,7 @@ a.text-info:focus, a.text-info:hover {
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: #635bff!important;
+    background-color: #8cc542!important;
     border-color: transparent;
     color: #fff;
 }
@@ -965,7 +965,7 @@ option:hover {
 }
 
 form div.form-group textarea.form-control:hover, form div.form-group input.form-control:hover, form div.form-group input.form-control:focus, form div.form-group input.form-control:active,div.form-group select.form-control:hover {
-    border: 2px solid #635bff; 
+    border: 2px solid #8cc542; 
 }
 
 /* input:-webkit-autofill {
@@ -977,7 +977,7 @@ form div.form-group textarea.form-control:hover, form div.form-group input.form-
 .dark form div.form-group input.form-control:focus, 
 .dark form div.form-group input.form-control:active
 {
-    border: 2px solid #635bff; 
+    border: 2px solid #8cc542; 
     background: var(--primary-dark-body-color);
 }
 
@@ -985,7 +985,7 @@ form div.form-group textarea.form-control:hover, form div.form-group input.form-
 .light form div.form-group input.form-control:focus, 
 .light form div.form-group input.form-control:active
  {
-    border: 2px solid #635bff; 
+    border: 2px solid #8cc542; 
     background: var(--primary-light-body-color);
 }
 
@@ -1003,7 +1003,7 @@ input[type=number]:focus,
 [type=tel].form-control:focus, 
 [contenteditable].form-control:focus {
   box-shadow: inset 0 -1px 0 transparent;
-  border: 2px solid #635bff; 
+  border: 2px solid #8cc542; 
 }
 
 
@@ -1161,11 +1161,11 @@ input[type=number]:focus,
   }
   
   /* input:checked + .slider {
-    background-color: #635BFF;
+    background-color: #8cc542;
   } */
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #635BFF;
+    box-shadow: 0 0 1px #8cc542;
   }
   
 
@@ -1185,7 +1185,7 @@ input[type=number]:focus,
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #635BFF;
+    background-color: #8cc542;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }

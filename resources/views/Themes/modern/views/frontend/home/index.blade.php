@@ -196,7 +196,7 @@
             <div class="row d-flex justify-content-center">
                 <div>
                     <h2 class="text-28 title text-center text-white">{{ __('Where can you use our services?') }}</h2>
-                    <hr class="p-2 text-center" style="width: 25px;border-top: 10px groove #635bff;border-top-left-radius: 25px;">
+                    <hr class="p-2 text-center" style="width: 25px;border-top: 10px groove #8cc542;border-top-left-radius: 25px;">
                 </div>
             </div>
 
@@ -367,7 +367,7 @@
         <div class="row d-flex justify-content-center">
             <div>
                 <h2 class="text-28 title text-center">{{ __('Payment Processors') }}</h2>
-            <hr class="p-2 text-center" style="width: 25px;border-top: 10px groove #635bff;border-top-left-radius: 25px;">
+            <hr class="p-2 text-center" style="width: 25px;border-top: 10px groove #8cc542;border-top-left-radius: 25px;">
             </div>
         </div>
 

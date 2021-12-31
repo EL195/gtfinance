@@ -7,8 +7,8 @@
   <style>
 	.sa-button-container .confirm {
 		color: #fff;
-		background-color: #635BFF !important;
-		border-color: #635BFF;
+		background-color: #8cc542 !important;
+		border-color: #8cc542;
 		padding: 8px 15px;
 	}
 	.sa-button-container .confirm:hover {

@@ -282,13 +282,13 @@ header {
 
 .bg-nav {
     width: 100% !important;
-    background:#635BFF!important;
+    background:#8cc542!important;
     z-index: 1;
     padding: 0px;
 }
 .bg-primary {
   
-    background: #635BFF!important;
+    background: #8cc542!important;
     width: 100% !important;   
 }
 
@@ -326,7 +326,7 @@ header {
 }
 
 .select-div-active {
-    border: 2px solid #635BFF!important;
+    border: 2px solid #8cc542!important;
     background: #dee2e6;
 }
 
@@ -339,11 +339,11 @@ header {
 }
 
 .btn-primary {
-    background: #635BFF!important;
+    background: #8cc542!important;
 }
 
 .btn-grad {
-    background: #635BFF!important;
+    background: #8cc542!important;
     padding: 8px 20px;
     text-align: center;
     transition: 0.5s;
@@ -368,7 +368,7 @@ header {
 }
 
 .btn-grad-crypto {
-    background:#635BFF!important;
+    background:#8cc542!important;
     padding: 5px 20px;
     text-align: center;
     text-transform: uppercase;
@@ -402,13 +402,13 @@ header {
     color: #2f2f2f;            
     box-shadow: 0 0 20px #eee;
     border-radius: 8px;
-    border: 1px solid #635BFF;
+    border: 1px solid #8cc542;
     font-weight: 600;
 }
 
 .btn-grad-outline:hover {
-    background:#635BFF!important;
-    border: 1px solid #635BFF;
+    background:#8cc542!important;
+    border: 1px solid #8cc542;
     color:#fff;
 }
 
@@ -417,7 +417,7 @@ header {
 }
 
 .btn-grad-copy {
-    background: #635bff!important;
+    background: #8cc542!important;
     color: #fff;
 }
 
@@ -427,7 +427,7 @@ header {
     color: #fff;
 }
 .active-tab a {
-    color:#635BFF;
+    color:#8cc542;
     font-size: 20px;
     font-weight: 700;
 }
@@ -595,7 +595,7 @@ a {
 }
 
 a:hover {
-    color: #635BFF;
+    color: #8cc542;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
@@ -979,29 +979,29 @@ canvas {
 }
 
 .menu-list ul li:hover {
-    color: #635BFF;
+    color: #8cc542;
     cursor: pointer;
 }
 
 .menu-list ul li.active {
-    color: #635BFF;
+    color: #8cc542;
     cursor: pointer;
 }
 
 .menu-list ul li.active a {
-    color: #635BFF !important;
+    color: #8cc542 !important;
 }
 
 .menu-list ul li.active i {
-    color:#635BFF !important;
+    color:#8cc542 !important;
 }
 
 .menu-list ul li:hover i {
-    color: #635BFF !important;
+    color: #8cc542 !important;
 }
 
 .menu-list ul li:hover a {
-    color: #635BFF !important;
+    color: #8cc542 !important;
 }
 
 .menu-list ul li a {
@@ -1924,7 +1924,7 @@ footer {
 }
 
 .active2 {
-    color: #635BFF;
+    color: #8cc542;
 }
 
 .set-Box img {
@@ -1971,11 +1971,11 @@ footer {
 }
 
 .chart-list ul li a:hover {
-    color:#635BFF!important;
+    color:#8cc542!important;
 }
 
 .chart-list ul li.active a {
-    color: #635BFF!important;
+    color: #8cc542!important;
     padding-bottom: 20px;
     font-size: 18px;
 
@@ -2200,7 +2200,7 @@ footer {
 }
 
 .btn-primary {
-    background: #635BFF!important;
+    background: #8cc542!important;
 }
 
 .dash-btn .btn-cust {
@@ -2455,13 +2455,13 @@ footer {
 
 .paymentGateway:hover {
     cursor: pointer;
-    background-color: #635bff;
+    background-color: #8cc542;
     padding: 5px;
     margin-top: 10px;
 }
 
 .activeMethod {
-    background-color: #635bff;
+    background-color: #8cc542;
     padding: 5px;
     margin-top: 10px;
 }
@@ -2469,8 +2469,8 @@ footer {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #635bff !important;
-    border-color: #635bff !important;
+    background-color: #8cc542 !important;
+    border-color: #8cc542 !important;
 }
 
 /*---------------------confirmation---------------------*/
@@ -2716,7 +2716,7 @@ footer {
 }
 
 .btn-action {
-    color: #635BFF!important;
+    color: #8cc542!important;
     background-color: #E1EDF9;
     border-color: #E1EDF9;
     border-radius: 8px;
@@ -2726,8 +2726,8 @@ footer {
 
 .btn-action:hover {
     color: #fff!important;
-    background-color: #635BFF;
-    border-color: #635BFF;
+    background-color: #8cc542;
+    border-color: #8cc542;
 }
 
 .ranges {
@@ -2739,7 +2739,7 @@ footer {
     background-color: #ffffff!important;
     border: 1px solid #F9FAFB!important;
     border-radius: 4px;
-    color: #635BFF!important;
+    color: #8cc542!important;
     padding: 10px 12px!important;
     cursor: pointer;
 }
@@ -2750,13 +2750,13 @@ footer {
 
 .daterangepicker th.month {
     width: auto;
-    color: #635BFF!important;
+    color: #8cc542!important;
     font-size: 16px!important;
     font-weight: 600!important;
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: #635BFF!important;
+    background-color: #8cc542!important;
     border-color: transparent;
     color: #fff;
 }
@@ -2771,7 +2771,7 @@ footer {
 }
 
 .daterangepicker td.active {
-    background-color: #635BFF!important;
+    background-color: #8cc542!important;
     border-color: transparent;
     color: #fff;
 }
@@ -2791,7 +2791,7 @@ div.form-group input.form-control,div.form-group select.form-control{
 }
 
 form div.form-group textarea.form-control:hover, form div.form-group input.form-control:hover, form div.form-group input.form-control:focus, form div.form-group input.form-control:active,div.form-group select.form-control:hover {
-    border: 1px solid #635BFF; 
+    border: 1px solid #8cc542; 
     background: #eff3f6;
 }
 
@@ -2809,7 +2809,7 @@ input[type=number]:focus,
 [type=tel].form-control:focus, 
 [contenteditable].form-control:focus {
   box-shadow: inset 0 -1px 0 #fff;
-  border: 1px solid #635BFF; 
+  border: 1px solid #8cc542; 
 }
 
 .form-control:disabled, .form-control[readonly] {
@@ -2865,7 +2865,7 @@ input[type=number]:focus,
 }
 
 .text-info {
-    color:#635BFF!important;
+    color:#8cc542!important;
 }
 
 .c-code {
@@ -2904,7 +2904,7 @@ h3 {
 
 .upload-file {
     background-color: #E1EDF9;
-    color: #635BFF;
+    color: #8cc542;
     padding: 5px 15px;
     border-radius: 0.3rem;
     cursor: pointer;
@@ -3012,7 +3012,7 @@ h3 {
 }
 
 .m-nav-bg {
-    background: #635BFF;
+    background: #8cc542;
     border-top-left-radius: 0rem;
     border-top-right-radius: 0rem;
 }
@@ -3064,7 +3064,7 @@ textarea.form-control:not([size]):not([multiple]) {
 
 
 #scroll-top-area {
-    background: #635BFF;
+    background: #8cc542;
     position: fixed;
     bottom: 10px;
     right: 10px;

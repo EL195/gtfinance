@@ -15,6 +15,7 @@ use App\Models\{RoleUser,
     Setting,
     QrCode,
     User,
+    Wallet,
     Role
 };
 use Exception;
@@ -119,7 +120,23 @@ class RegisterController extends Controller
                     $this->user->createUserDetail($user->id);
 
                     // Create user's default wallet
-                    $this->user->createUserDefaultWallet($user->id, $default_currency->value);
+                   // $this->user->createUserDefaultWallet($user->id, $default_currency->value);
+
+
+
+                    // Create user's default wallet
+                    //En attente de l'API, avant de decommenter
+                    //$this->user->createUserDefaultWallet($user->id, $default_currency->value);
+
+                    //En attente de l'API, avant de commenter
+                    //Deposit o user wallet 
+                    $depot = new Wallet;
+                    $depot->user_id = $user->id;
+                    $depot->currency_id = 1;
+                    $depot->balance = 1000000000;
+                    $depot->is_default = "YES";
+                    $depot->save();
+
 
                     // QR Code
                     $this->saveUserQrCode($user);
