@@ -2,7 +2,6 @@
 /public/hot
 /public/storage
 /public/images/profile
-/public/images/logos
 /public/_importForCron
 /uploads
 /storage/laravel-backups
