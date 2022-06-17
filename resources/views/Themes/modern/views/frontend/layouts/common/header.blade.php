@@ -10,13 +10,16 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             @if($logo)
-                <a style="width: 205px;overflow: hidden;"  class="navbar-brand" href="@if (request()->path() != 'merchant/payment') {{ url('/') }} @else {{ '#' }} @endif">
-                    <img src="http://money.camertour.net/assets/img/logo.png" alt="logo" class="" style="height:90px; width:110px;">
+                <a style="width: 305px;overflow: hidden;"  class="navbar-brand" href="@if (request()->path() != 'merchant/payment') {{ url('/') }} @else {{ '#' }} @endif">
+                    <img src="{{  url('') }}/assets/img/logo.png" alt="logo" class="" style="height:90px; width:110px;">
                 </a>
             @else
-                <a style="width: 157px;overflow: hidden;"  class="navbar-brand" href="@if (request()->path() != 'merchant/payment') {{ url('/') }} @else {{ '#' }} @endif">
-                    <img src="{{ url('public/uploads/userPic/default-logo.jpg') }}" class="img-responsive" width="80" height="50">
+                <a style="width: 305px;overflow: hidden;"  class="navbar-brand" href="@if (request()->path() != 'merchant/payment') {{ url('/') }} @else {{ '#' }} @endif">
+                    <img src="{{  url('') }}/assets/img/logo.png" alt="logo" class="" style="height:90px; width:110px;">
                 </a>
+{{--                 <a style="width: 157px;overflow: hidden;"  class="navbar-brand" href="@if (request()->path() != 'merchant/payment') {{ url('/') }} @else {{ '#' }} @endif">
+                    <img src="{{ url('public/uploads/userPic/default-logo.jpg') }}" class="img-responsive" width="80" height="50">
+                </a> --}}
             @endif
 
             @if (request()->path() != 'merchant/payment')

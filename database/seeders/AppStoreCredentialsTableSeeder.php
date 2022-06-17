@@ -16,8 +16,8 @@ class AppStoreCredentialsTableSeeder extends Seeder
     {
         AppStoreCredentials::truncate();
         AppStoreCredentials::insert([
-            ['id' => 1, 'has_app_credentials' => 'Yes', 'link' => 'http://store.google.com/pay-money', 'logo' => '1531650482.png', 'company' => 'Google'],
-            ['id' => 2, 'has_app_credentials' => 'Yes', 'link' => 'https://itunes.apple.com/bd/app/pay-money', 'logo' => '1531134592.png', 'company' => 'Apple'],
+            ['id' => 1, 'has_app_credentials' => 'Yes', 'link' => 'https://play.google.com/store/apps/details?id=io.gtfinance.cm', 'logo' => 'playstore.png', 'company' => 'Google'],
+            ['id' => 2, 'has_app_credentials' => 'Yes', 'link' => 'https://play.google.com/store/apps/details?id=io.gtfinance.cm', 'logo' => '1531134592.png', 'company' => 'Apple'],
         ]);
     }
 }

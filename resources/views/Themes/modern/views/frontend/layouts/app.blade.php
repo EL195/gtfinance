@@ -15,8 +15,11 @@
     <link rel="javascript" href="{{theme_asset('public/frontend/js/respond.js')}}">
 
     <!---favicon-->
+    <link rel="icon" href="{{ url('/public/uploads/userPic/default-image.png') }}">
     @if (!empty(getfavicon()))
-        <link rel="shortcut icon" href="{{theme_asset('public/images/logos/'.getfavicon())}}" />
+      {{--   <link rel="shortcut icon" href="{{theme_asset('public/images/logos/'.getfavicon())}}" /> --}}
+        <link rel="icon" href="{{ url('/public/uploads/userPic/default-image.png') }}">
+
     @endif
 
     <script type="text/javascript">

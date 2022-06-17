@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
 <section>
-    <div class="banner" style="background-image: linear-gradient(to right, rgba(56, 80, 129, 0.45), rgba(56, 80, 129, 0.25)), url( http://money.camertour.net/assets/img/home_banner.png);background-size: cover;">
+    <div class="banner" style="background-image: linear-gradient(to right, rgba(56, 80, 129, 0.45), rgba(56, 80, 129, 0.25)), url( {{  url('') }}/assets/img/home_banner.png);background-size: cover;">
       <div class="container py-5">
           <div class="row py-5">
               <div class="col-md-7 py-5">
