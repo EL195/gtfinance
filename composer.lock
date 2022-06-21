@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a748cee6adc809f7672eef8cd3bdfe63",
+    "content-hash": "56326fcc7f49a3a5d5dce707ea99120b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3260,6 +3260,67 @@
                 "source": "https://github.com/MarkBaker/PHPMatrix/tree/3.0.0"
             },
             "time": "2021-07-01T19:01:15+00:00"
+        },
+        {
+            "name": "maviance/smobilpay-php",
+            "version": "0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maviance/smobilpay-php.git",
+                "reference": "96f27a03c69ff044801c753fc488a423ac2e8430"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maviance/smobilpay-php/zipball/96f27a03c69ff044801c753fc488a423ac2e8430",
+                "reference": "96f27a03c69ff044801c753fc488a423ac2e8430",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=5.5",
+                "ramsey/uuid": "@stable"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "~2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maviance\\S3PApiClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "maviance",
+                    "homepage": "https://www.smobilpay.cm"
+                }
+            ],
+            "description": "Smobilpay Third Party (S3P) API client for PHP",
+            "homepage": "https://www.smobilpay.cm",
+            "keywords": [
+                "Mobile Payments",
+                "Smobilpay",
+                "Third Party",
+                "api",
+                "bill payments",
+                "mobile money",
+                "payments",
+                "php",
+                "topups"
+            ],
+            "support": {
+                "issues": "https://github.com/maviance/smobilpay-php/issues",
+                "source": "https://github.com/maviance/smobilpay-php/tree/0.0.8"
+            },
+            "time": "2022-03-11T12:18:49+00:00"
         },
         {
             "name": "mdanter/ecc",

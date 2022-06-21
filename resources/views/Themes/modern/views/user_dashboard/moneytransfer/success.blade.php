@@ -44,7 +44,8 @@
                                   <div class="text-center">
                                     <p class="font-weight-600">
                                          <br/>
-                                   <div style="border-radius:10px; border: 1px solid green; padding:5px;"><span style="color:gren;"> @lang('message.dashboard.send-request.send.confirmation.folow-step')</span><br/>
+                                   <div style="border-radius:10px; border: 1px solid green; padding:5px;"><span style="color:gren;"> @lang('message.dashboard.send-request.send.confirmation.folow-step-ok')</span><br/>
+                                 {{--   <div style="border-radius:10px; border: 1px solid green; padding:5px;"><span style="color:gren;"> @lang('message.dashboard.send-request.send.confirmation.folow-step')</span><br/> --}}
                                     {{-- <a style="color:blue!important;" href="/interac">@lang('message.dashboard.send-request.send.confirmation.send-now')</a> --}}</div>
                                     </p>
                                   </div>
@@ -68,7 +69,7 @@
                                 <div class="mt-4">
                                     <div class="text-center">
                                         {{-- <a href="{{ url('moneytransfer/print') }}/{{ $transInfo['trans_id'] }}" target="_blank" class="btn btn-grad mr-2 mt-4"><strong>@lang('message.dashboard.vouchers.success.print')</strong></a> --}}
-                                        <a href="virement-interac" class="btn btn-primary px-4 py-2 ml-2 mt-4"><strong>@lang('message.dashboard.send-request.send.confirmation.send-now')</strong></a>
+                                        <a href="/moneytransfer" class="btn btn-primary px-4 py-2 ml-2 mt-4"><strong>@lang('message.dashboard.send-request.send.confirmation.send-again')</strong></a>
                                     </div>
                                 </div>
                               </div>

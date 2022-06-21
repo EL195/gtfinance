@@ -25,6 +25,7 @@
         "laravel/tinker": "^2.5",
         "lcobucci/jwt": "3.4.0",
         "maatwebsite/excel": "^3.1",
+        "maviance/smobilpay-php": "^0.0.8",
         "mpdf/mpdf": "^8.0",
         "patricpoba/mtn-momo-api-php": "^0.2.2",
         "phpmailer/phpmailer": "^6.5",
@@ -64,6 +65,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
+        "classmap": [
+            "Maviance/S3PApiClient/Service",
+            "GuzzleHttp"
+        ],
         "files": [
             "app/helpers.php"
         ]

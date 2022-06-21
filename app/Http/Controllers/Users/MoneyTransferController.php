@@ -16,6 +16,18 @@ use App\Models\{Transaction,
     User
 };
 
+use Maviance\S3PApiClient\Service\HealthcheckApi;
+use Maviance\S3PApiClient\Service\AccountApi;
+use Maviance\S3PApiClient\Service\InitiateApi;
+use Maviance\S3PApiClient\Service\ConfirmApi;
+use Maviance\S3PApiClient\Service\VerifyApi;
+use Maviance\S3PApiClient\Service\MasterdataApi;
+use Maviance\S3PApiClient\Configuration;
+use Maviance\S3PApiClient\ApiClient;
+use GuzzleHttp\Client;
+
+
+
 class MoneyTransferController extends Controller
 {
     protected $helper;
@@ -109,12 +121,38 @@ class MoneyTransferController extends Controller
     {
         //set the session for validating the action
         setActionSession();
+        $url = env('MAVIANCE_URL');
+        $secret = env('MAVIANCE_SECRET');
+        $token = env('MAVIANCE_PUBLIC');
+        $xApiVersion = env('MAVIANCE_VERSION');
+
+
+        $config = new Configuration();
+        $config->setHost($url);
+        $client = new ApiClient($token, $secret, ['verify' => false]);
+
 
         $data['menu']    = 'send_receive';
         $data['submenu'] = 'send';
 
         if (!$request->isMethod('post'))
         {
+            
+            $apiInstance = new MasterdataApi(
+                $client, $config
+            );
+
+            try {
+                $results = $apiInstance->serviceGet($xApiVersion);
+                //dd($results);
+                $data['items_services'] = $results;
+                //dd(json_encode($results));
+                //return $result;
+            } catch (Exception $e) {
+                return $e;
+                echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
+            }
+
             /*Check Whether Currency is Activated in feesLimit*/
             $data['walletList'] = Wallet::where(['user_id' => auth()->user()->id])
                 ->whereHas('active_currency', function ($q)
@@ -134,6 +172,7 @@ class MoneyTransferController extends Controller
         }
         else if ($request->isMethod('post'))
         {
+           //dd();
             $rules = array(
                 'amount'   => 'required|numeric',
                 'receiver' => 'required',
@@ -224,6 +263,8 @@ class MoneyTransferController extends Controller
             session(['transInfo' => $request->all()]);
             $data['transInfo'] = $request->all();
 
+            //dd($data['transInfo']);
+
             return view('user_dashboard.moneytransfer.confirmation', $data);
         }
     }
@@ -308,9 +349,108 @@ class MoneyTransferController extends Controller
         return response()->json(['success' => $success]);
     }
 
+    public function getService($id){
+        $url = env('MAVIANCE_URL');
+        $secret = env('MAVIANCE_SECRET');
+        $token = env('MAVIANCE_PUBLIC');
+        $xApiVersion = env('MAVIANCE_VERSION');
+
+
+        $config = new Configuration();
+        $config->setHost($url);
+        $client = new ApiClient($token, $secret, ['verify' => false]);
+
+
+        $apiInstance = new MasterdataApi(
+            $client, $config
+        );
+
+        try {
+            return  $apiInstance->serviceIdGet($xApiVersion, $id);
+
+        } catch (Exception $e) {
+            return $e;
+            echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
+        }
+
+    }
+
     //Send Money - Confirm
     public function sendMoneyConfirm(Request $request)
     {
+        $url = env('MAVIANCE_URL');
+        $secret = env('MAVIANCE_SECRET');
+        $token = env('MAVIANCE_PUBLIC');
+        $xApiVersion = env('MAVIANCE_VERSION');
+
+
+        $config = new Configuration();
+        $config->setHost($url);
+        $client = new ApiClient($token, $secret, ['verify' => false]);
+
+        $apiInstance = new MasterdataApi(
+            $client, $config
+        );
+        $sessionValue1 = session('transInfo');
+        $serviceid = $sessionValue1['pay'];
+        //dd($request);
+        try {
+            $results = $apiInstance->cashinGet($xApiVersion, $serviceid);
+            //dd($results[0]['payItemId']);
+            if($results){
+                $apiInstance_quotestd = new InitiateApi(
+                    $client, $config
+                );
+                
+                $bodyAPI = array(
+                    'payItemId' => $results[0]['payItemId'],
+                    'amount' => $sessionValue1['amount']
+                );
+                $bodyAPI = json_encode($bodyAPI);
+                $quotestd = $apiInstance_quotestd->quotestdPost($xApiVersion, $bodyAPI);
+                //dd($quotestd['quoteId']);
+                
+                //collect if statement
+                if($quotestd){
+                    $apiInstance_collectstd = new ConfirmApi(
+                        $client, $config
+                    );
+                    //dd(auth()->user());
+                   // dd($sessionValue1);
+                    //dd($this->getService($sessionValue1['pay']));
+                    $body_collectstd = array(
+                        'quoteId' => $quotestd['quoteId'],
+                        'customerPhonenumber' => substr($sessionValue1['receiver'],4),
+                        'customerEmailaddress' => auth()->user()->email,
+                        'customerName' => auth()->user()->first_name.' '.auth()->user()->last_name,
+                        'customerAddress' => auth()->user()->formattedPhone,
+                        'serviceNumber' => substr($sessionValue1['receiver'],4),
+                        'trid' => rand(1,100000000)
+                    );
+                    $body_collectstd = json_encode($body_collectstd);
+                    $collectstd = $apiInstance_collectstd->collectstdPost($xApiVersion, $body_collectstd);
+                    $data['ptno']    = $collectstd['ptn'];
+                    //dd($collectstd['ptn']);
+                    //$collectstd['PENDING'];
+
+/*                     if($collectstd){
+                        $apiInstance_verifytxGet = new VerifyApi(
+                            $client, $config
+                        );
+                        $ptn = $collectstd['ptn'];
+                        $trid = $collectstd['trid'];
+                        $verifytxGet = $apiInstance_verifytxGet->verifytxGet($xApiVersion, $ptn);
+                        dd($verifytxGet);
+                    } */
+                }
+            }
+
+        } catch (Exception $e) {
+            return $e;
+            echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
+        }
+
+
         $data['menu']    = 'send_receive';
         $data['submenu'] = 'send';
 
@@ -343,7 +483,7 @@ class MoneyTransferController extends Controller
             'user_id'             => $user_id,
             'userInfo'            => $userInfo,
             'currency_id'         => $request_wallet_currency,
-            'uuid'                => $unique_code,
+            'uuid'                => $data['ptno'],
             'fee'                 => $sessionValue['fee'],
             'amount'              => $sessionValue['amount'],
             'note'                => trim($sessionValue['note']),

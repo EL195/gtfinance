@@ -668,6 +668,7 @@ return [
                     'send-again'         => 'Envoyer de l\'argent à nouveau',
                     'send-to-bank-again' => 'Virement bancaire',
                     'folow-step' => 'S\'il vous plait veuillez suivre ces étapes pour nous faire parvenir votre interac afin de valider votre transfer',
+                    'folow-step-ok' => 'Votre argent est en route.Vous pouvez suivre vos transaction <a href="/transactions">ici</a>',
                     'send-now' => 'Envoyer maintenant',
 
                 ],

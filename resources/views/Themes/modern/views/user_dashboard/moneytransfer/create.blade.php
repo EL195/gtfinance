@@ -61,9 +61,12 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword1">@lang('message.dashboard.deposit.payment-method')</label>
                                                     <select class="form-control wallet" name="pay" required>
-                                                                <option value="OM">Orange Money</option>
-                                                                <option value="MOMO">MTN Mobile Money</option>
-                                                                <option value="WALLET">@lang('message.dashboard.right-table.title')</option>
+                                                        {{-- <option value="WALLET">@lang('message.dashboard.right-table.title')</option> --}}
+                                                        @foreach($items_services as $itemService)
+                                                            @if($itemService['type']=="CASHIN")
+                                                                <option value="{{ $itemService['serviceid'] }}">{{ $itemService['merchant'] }} ({{ $itemService['country'] }})</option>
+                                                            @endif
+                                                        @endforeach
                                                     </select>
                                                     <small id="walletlHelp" class="form-text text-muted">
                                                         @lang('message.dashboard.deposit.payHim') 
@@ -78,7 +81,7 @@
                                             <div class="col-md-7">
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword1">@lang('message.dashboard.send-request.common.amount')</label>
-                                                    <input type="text" class="form-control amount" name="amount" placeholder="0.00" id="amount" onkeyup="this.value = this.value.replace(/^\.|[^\d\.]/g, '')"
+                                                    <input type="text" class="form-control amount" name="amount" value="1000" id="amount" onkeyup="this.value = this.value.replace(/^\.|[^\d\.]/g, '')"
                                                     value="{{ isset($transInfo['amount'])?$transInfo['amount']:'' }}" oninput="restrictNumberToPrefdecimal(this)">
                                                     <span class="amountLimit error"></span>
                                                 </div>

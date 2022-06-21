@@ -6,6 +6,17 @@
  */
 Route::group(['namespace' => 'Api'], function ()
 {
+
+    //Callback Url
+    Route::post('check-pay-status', 'TransactionController@getCheckPayStatusApi');
+
+    Route::get('test-api', 'TransactionController@getTestApi');
+
+
+
+
+
+
     //Route for Preference Settings
     Route::get('get-preference-settings', 'LoginController@getPreferenceSettings');
 

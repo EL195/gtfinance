@@ -216,6 +216,7 @@ class Transfer extends Model
     //common functions - starts
     public function createTransfer($arr)
     {
+        //dd($arr);
         $transfer              = new self();
         $transfer->sender_id   = $arr['user_id'];
         $transfer->receiver_id = isset($arr['userInfo']) ? $arr['userInfo']->id : null;
@@ -234,7 +235,7 @@ class Transfer extends Model
         }
         if (isset($transfer->receiver_id))
         {
-            $transfer->status = 'Success';
+            $transfer->status = 'Pending';
         }
         else
         {
@@ -605,6 +606,7 @@ class Transfer extends Model
      */
     public function processSendMoneyConfirmation($arr = [], $clearSessionFrom)
     {
+        //dd($arr);
         $response = ['status' => 401];
 
         try
@@ -642,8 +644,8 @@ class Transfer extends Model
                 self::updateSenderWallet($arr['senderWallet'], $arr['total']);
 
                 //Create Or Update Receiver Wallet
-                $arr['transfer_receiver_id'] = $transfer->receiver_id;
-                self::createOrUpdateReceiverWallet($arr);
+                //$arr['transfer_receiver_id'] = $transfer->receiver_id;
+                //self::createOrUpdateReceiverWallet($arr);
 
                 DB::commit();
 
