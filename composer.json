@@ -66,8 +66,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "classmap": [
-            "Maviance/S3PApiClient/Service",
-            "GuzzleHttp"
+         
         ],
         "files": [
             "app/helpers.php"
