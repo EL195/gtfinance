@@ -62,8 +62,8 @@
 												<p>@lang('message.dashboard.confirmation.mtRecu')</p>
 											</div>
 
-											<div class="pl-2">
-												<p class="finalValue">500</p>
+                                            <div class="pl-2">
+												<p>{{ moneyFormat($api_money['cible'], formatNumber($api_money['totalAmountAll'])) }}</p>
 											</div>
 										</div>
 										<div class="d-flex flex-wrap justify-content-between mt-2">
@@ -72,7 +72,7 @@
 											</div>
 
 											<div class="pl-2">
-												<p class="finalValue">{{ isset($transInfo['pay']) ? $transInfo['pay'] : '' }}</p>
+												<p class="finalValue">{{ isset($api_money['item']) ? $api_money['item'] : '' }}</p>
 											</div>
 										</div>
                                         <div class="d-flex flex-wrap justify-content-between mt-2">
@@ -80,8 +80,8 @@
 												<p>@lang('message.dashboard.confirmation.taux')</p>
 											</div>
 
-											<div class="pl-2">
-												<p id="rate">500</p>
+			                                <div class="pl-2">
+												<p>{{ moneyFormat($api_money['cible'], formatNumber($api_money['taux'])) }}</p>
 											</div>
 										</div>
                                         <!-- Montant converti -->
@@ -103,7 +103,7 @@
 										</div>
 
 										<div class="pl-2">
-											<p class="totall font-weight-600">{{ moneyFormat($transInfo['currSymbol'], formatNumber($transInfo['totalAmount'])) }}</p>
+											<p class="font-weight-600">{{ moneyFormat($api_money['cible'], formatNumber($api_money['totalAmountAll'])) }}</p>
 										</div>
 									</div>
 
@@ -172,64 +172,6 @@
     	e.preventDefault();
         window.history.back();
     });
-    
-    
-
-    // for selecting different controls
-    var str = document.querySelector("#montant");
-    console.log(str.innerHTML);
-    var search1 = str.innerHTML.substring(2, 65);
-    console.log(search1);
-
-    var search = parseInt(search1);  
-    console.log(search);
-    
-    
-    var fromCurrecy = "CAD";//from
-    var toCurrecy = "XAF"; // to
-    var finalValue = document.querySelector(".finalValue");
-    var totall = document.querySelector(".totall")
-    var resultFrom;
-    var resultTo;
-    var searchValue;
-    var rate = document.querySelector("#rate");
-      
-    // Event when currency is change
-        resultFrom = fromCurrecy;
-    // Event when currency is changed
-        resultTo = toCurrecy;
-        searchValue = search;
-    
-        fetch("https://api.exchangerate-api.com/v4/latest/CAD", {mode: 'cors'})
-            .then(currency => {
-                return currency.json();
-            }).then(displayResults);
-      
-    // display results after convertion
-    function displayResults(currency) {
-
-        let fromRate = currency.rates[resultFrom];
-
-        console.log(fromRate);
-        let toRate = currency.rates[resultTo];
-        console.log(toRate);
-        toRateWith = "F CFA "+toRate;
-        rate.innerHTML = toRateWith;
-        // Create our number formatter.
-        var formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'XAF',
-
-        // These options are needed to round to whole numbers if that's what you want.
-        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-        });
-        var fin =toRate * searchValue;
-        var fin2 = formatter.format(fin); /* $2,500.00 */
-
-        finalValue.innerHTML = fin2;
-        totall.innerHTML = fin2;
-        //finalAmount.style.display = "block";
     }
   
 

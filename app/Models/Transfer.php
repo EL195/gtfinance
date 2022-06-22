@@ -224,6 +224,7 @@ class Transfer extends Model
         $transfer->uuid        = $arr['uuid'];
         $transfer->fee         = $arr['fee'];
         $transfer->amount      = $arr['amount'];
+        $transfer->amount_converted      = $arr['amount_converted'];
         $transfer->note        = $arr['note'];
         if ($arr['emailFilterValidate'])
         {
@@ -248,6 +249,7 @@ class Transfer extends Model
 
     public function createTransferredTransaction($arr)
     {
+        //dd($arr);
         $transaction                           = new Transaction();
         $transaction->user_id                  = $arr['user_id'];
         $transaction->end_user_id              = isset($arr['userInfo']) ? $arr['userInfo']->id : null;
@@ -269,6 +271,7 @@ class Transfer extends Model
         $transaction->charge_percentage = @$arr['charge_percentage'] ? $arr['p_calc'] : 0;
         $transaction->charge_fixed      = @$arr['charge_fixed'] ? @$arr['charge_fixed'] : 0;
         $transaction->total             = '-' . ($arr['total']);
+        $transaction->amount_converted     = $arr['amount_converted'];
         $transaction->note              = $arr['note'];
         $transaction->status            = $arr['status'];
         $transaction->save();
@@ -300,6 +303,7 @@ class Transfer extends Model
         $transaction->charge_fixed      = 0;
         $transaction->total             = $arr['amount'];
         $transaction->note              = $arr['note'];
+        $transaction->amount_converted      = $arr['amount_converted'];
         $transaction->status            = $arr['status'];
         $transaction->save();
     }

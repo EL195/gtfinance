@@ -133,7 +133,7 @@ class RegisterController extends Controller
                     $depot = new Wallet;
                     $depot->user_id = $user->id;
                     $depot->currency_id = 1;
-                    $depot->balance = 1000000000;
+                    $depot->balance = 0;
                     $depot->is_default = "YES";
                     $depot->save();
 

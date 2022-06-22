@@ -427,6 +427,7 @@ return [
             'transferred'      => [
                 'paid-with'          => 'Payé avec',
                 'transferred-amount' => 'Montant transféré',
+                'transferred-amount-converted' => 'Montant à percevoir',
                 'email'              => 'Email',
                 'note'               => 'Note',
                 'paid-to'            => 'Versée à',

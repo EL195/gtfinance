@@ -296,7 +296,11 @@ class UserTransactionController extends Controller
                                     "<div class='d-flex justify-content-between flex-wrap mt-4'>" .
                                         "<div><p>" . __('message.dashboard.left-table.transferred.transferred-amount') .  "</p></div>" .
                                         "<div><p>" . moneyFormat($transaction->currency->symbol, formatNumber(abs($transaction->subtotal))) . "</p></div>" .
-                                    "</div>";
+                                    "</div>".
+                                    "<div class='d-flex justify-content-between flex-wrap mt-4'>" .
+                                    "<div><p>" . __('message.dashboard.left-table.transferred.transferred-amount-converted') .  "</p></div>" .
+                                    "<div><p>" . moneyFormat("XAF", formatNumber(abs($transaction->amount_converted))) . "</p></div>" .
+                                     "</div>";
 
 
 

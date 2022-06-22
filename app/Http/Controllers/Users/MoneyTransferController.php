@@ -13,7 +13,8 @@ use App\Models\{Transaction,
     Transfer,
     Setting,
     Wallet,
-    User
+    User,
+    Currency
 };
 
 use Maviance\S3PApiClient\Service\HealthcheckApi;
@@ -172,7 +173,8 @@ class MoneyTransferController extends Controller
         }
         else if ($request->isMethod('post'))
         {
-           //dd();
+            //dd($request);
+
             $rules = array(
                 'amount'   => 'required|numeric',
                 'receiver' => 'required',
@@ -262,11 +264,58 @@ class MoneyTransferController extends Controller
             
             session(['transInfo' => $request->all()]);
             $data['transInfo'] = $request->all();
+            //dd($this->getService($request->pay)['merchant']);
+            $data['api_money']['item']= $this->getService($request->pay)['merchant'];
+            $get_curency = Currency::query()->find($request->currency_id);
+            //dd($get_curency);
+            $cible = "XAF";
+            $data['api_money']['cible'] = $cible;
+            $data['api_money']['taux'] = $this->conversion($get_curency->code, $cible);
+            $data['api_money']['totalAmount'] = $request->totalAmount;
+            $data['api_money']['totalAmountAll'] = $request->totalAmount*$data['api_money']['taux'];
+            session(['api_money' => $data['api_money']]);
+            //dd($request);
+
 
             //dd($data['transInfo']);
 
             return view('user_dashboard.moneytransfer.confirmation', $data);
         }
+    }
+
+    public function conversion($devise, $cible)
+    {
+        // Fetching JSON
+            //$req_url = 'https://v6.exchangerate-api.com/v6/YOUR-API-KEY/latest/USD';
+            $req_url = 'https://v6.exchangerate-api.com/v6/e2fbbdee38c8f3e6caf2292b/latest/'.$devise.'';
+            $response_json = file_get_contents($req_url);
+
+            // Continuing if we got a result
+            if(false !== $response_json) {
+
+                // Try/catch for json_decode operation
+                try {
+
+                    // Decoding
+                    $response = json_decode($response_json);
+
+                    // Check for success
+                    if('success' === $response->result) {
+
+                        // YOUR APPLICATION CODE HERE, e.g.
+                        $base_price = 12; // Your price in USD
+                        $EUR_price = round(($base_price * $response->conversion_rates->EUR), 2);
+                        return $response->conversion_rates->$cible;
+
+                    }
+
+                }
+                catch(Exception $e) {
+                    // Handle JSON parse error...
+                    return "ERROR";
+                }
+
+            }
     }
 
     //Send Money - Amount Limit Check
@@ -375,86 +424,18 @@ class MoneyTransferController extends Controller
 
     }
 
+
     //Send Money - Confirm
     public function sendMoneyConfirm(Request $request)
     {
-        $url = env('MAVIANCE_URL');
-        $secret = env('MAVIANCE_SECRET');
-        $token = env('MAVIANCE_PUBLIC');
-        $xApiVersion = env('MAVIANCE_VERSION');
-
-
-        $config = new Configuration();
-        $config->setHost($url);
-        $client = new ApiClient($token, $secret, ['verify' => false]);
-
-        $apiInstance = new MasterdataApi(
-            $client, $config
-        );
-        $sessionValue1 = session('transInfo');
-        $serviceid = $sessionValue1['pay'];
-        //dd($request);
-        try {
-            $results = $apiInstance->cashinGet($xApiVersion, $serviceid);
-            //dd($results[0]['payItemId']);
-            if($results){
-                $apiInstance_quotestd = new InitiateApi(
-                    $client, $config
-                );
-                
-                $bodyAPI = array(
-                    'payItemId' => $results[0]['payItemId'],
-                    'amount' => $sessionValue1['amount']
-                );
-                $bodyAPI = json_encode($bodyAPI);
-                $quotestd = $apiInstance_quotestd->quotestdPost($xApiVersion, $bodyAPI);
-                //dd($quotestd['quoteId']);
-                
-                //collect if statement
-                if($quotestd){
-                    $apiInstance_collectstd = new ConfirmApi(
-                        $client, $config
-                    );
-                    //dd(auth()->user());
-                   // dd($sessionValue1);
-                    //dd($this->getService($sessionValue1['pay']));
-                    $body_collectstd = array(
-                        'quoteId' => $quotestd['quoteId'],
-                        'customerPhonenumber' => substr($sessionValue1['receiver'],4),
-                        'customerEmailaddress' => auth()->user()->email,
-                        'customerName' => auth()->user()->first_name.' '.auth()->user()->last_name,
-                        'customerAddress' => auth()->user()->formattedPhone,
-                        'serviceNumber' => substr($sessionValue1['receiver'],4),
-                        'trid' => rand(1,100000000)
-                    );
-                    $body_collectstd = json_encode($body_collectstd);
-                    $collectstd = $apiInstance_collectstd->collectstdPost($xApiVersion, $body_collectstd);
-                    $data['ptno']    = $collectstd['ptn'];
-                    //dd($collectstd['ptn']);
-                    //$collectstd['PENDING'];
-
-/*                     if($collectstd){
-                        $apiInstance_verifytxGet = new VerifyApi(
-                            $client, $config
-                        );
-                        $ptn = $collectstd['ptn'];
-                        $trid = $collectstd['trid'];
-                        $verifytxGet = $apiInstance_verifytxGet->verifytxGet($xApiVersion, $ptn);
-                        dd($verifytxGet);
-                    } */
-                }
-            }
-
-        } catch (Exception $e) {
-            return $e;
-            echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
-        }
-
-
+        //dd($this->conversion("CAD"));
+       // dd($this->conversion("CAD"));
         $data['menu']    = 'send_receive';
         $data['submenu'] = 'send';
-
+        $api_money = session('api_money');
+        //dd($api_money);
         $sessionValue = session('transInfo');
+        //dd($sessionValue);
         if (empty($sessionValue))
         {
             return redirect('moneytransfer');
@@ -476,32 +457,45 @@ class MoneyTransferController extends Controller
         $emailFilterValidate     = $this->helper->validateEmailInput(trim($sessionValue['receiver']));
         $phoneRegex              = $this->helper->validatePhoneInput(trim($sessionValue['receiver']));
         $userInfo                = $this->helper->getEmailPhoneValidatedUserInfo($emailFilterValidate, $phoneRegex, trim($sessionValue['receiver']));
-        $arr                     = [
-            'emailFilterValidate' => $emailFilterValidate,
-            'phoneRegex'          => $phoneRegex,
-            'processedBy'         => $processedBy,
-            'user_id'             => $user_id,
-            'userInfo'            => $userInfo,
-            'currency_id'         => $request_wallet_currency,
-            'uuid'                => $data['ptno'],
-            'fee'                 => $sessionValue['fee'],
-            'amount'              => $sessionValue['amount'],
-            'note'                => trim($sessionValue['note']),
-            'receiver'            => trim($sessionValue['receiver']),
-            'charge_percentage'   => $feesDetails->charge_percentage,
-            'charge_fixed'        => $feesDetails->charge_fixed,
-            'p_calc'              => $p_calc,
-            'total'               => $total_with_fee,
-            'senderWallet'        => $senderWallet,
-        ];
-        $data['transInfo']['receiver']   = $sessionValue['receiver'];
-        $data['transInfo']['currSymbol'] = $sessionValue['currSymbol'];
-        $data['transInfo']['amount']     = $sessionValue['amount'];
-        $data['transInfo']['pay']        = $sessionValue['pay'];
-        $data['userPic']                 = isset($userInfo) ? $userInfo->picture : '';
-        $data['receiverName']            = isset($userInfo) ? $userInfo->first_name . ' ' . $userInfo->last_name : '';
+        //dd($this->debiteNow());
+        if($this->debiteNow()=="ERROR"){
+            $response['ex']['message'] ="Error";
+            $data['errorMessage'] = $response['ex']['message'];
+            return redirect('moneytransfer');
+        }
+        else{
+            $data['ptno'] = $this->debiteNow();
+            $arr                     = [
+                'emailFilterValidate' => $emailFilterValidate,
+                'phoneRegex'          => $phoneRegex,
+                'processedBy'         => $processedBy,
+                'user_id'             => $user_id,
+                'userInfo'            => $userInfo,
+                'currency_id'         => $request_wallet_currency,
+                'uuid'                => $data['ptno'],
+                'fee'                 => $sessionValue['fee'],
+                'amount'              => $sessionValue['amount'],
+                'amount_converted'    => $api_money['totalAmountAll'],
+                'note'                => trim($sessionValue['note']),
+                'receiver'            => trim($sessionValue['receiver']),
+                'charge_percentage'   => $feesDetails->charge_percentage,
+                'charge_fixed'        => $feesDetails->charge_fixed,
+                'p_calc'              => $p_calc,
+                'total'               => $total_with_fee,
+                'senderWallet'        => $senderWallet,
+            ];
+            $data['transInfo']['receiver']   = $sessionValue['receiver'];
+            $data['transInfo']['currSymbol'] = $sessionValue['currSymbol'];
+            $data['transInfo']['amount']     = $sessionValue['amount'];
+            $data['transInfo']['pay']        = $sessionValue['pay'];
+            $data['userPic']                 = isset($userInfo) ? $userInfo->picture : '';
+            $data['receiverName']            = isset($userInfo) ? $userInfo->first_name . ' ' . $userInfo->last_name : '';
+
+        }
 
         //Get response
+        
+       // $this->debiteNow();
         $response = $this->transfer->processSendMoneyConfirmation($arr, 'web');
         if ($response['status'] != 200)
         {
@@ -519,6 +513,74 @@ class MoneyTransferController extends Controller
         session()->forget('transInfo');
         clearActionSession();
         return view('user_dashboard.moneytransfer.success', $data);
+    }
+
+
+    public function debiteNow ()
+    {
+        $url = env('MAVIANCE_URL');
+        $secret = env('MAVIANCE_SECRET');
+        $token = env('MAVIANCE_PUBLIC');
+        $xApiVersion = env('MAVIANCE_VERSION');
+
+
+        $config = new Configuration();
+        $config->setHost($url);
+        $client = new ApiClient($token, $secret, ['verify' => false]);
+
+        $apiInstance = new MasterdataApi(
+            $client, $config
+        );
+        $sessionValue1 = session('api_money');
+        $sessionValue2 = session('transInfo');
+        //dd(sessionValue2);
+        //$api_money['totalAmountAll']
+        $serviceid = $sessionValue2['pay'];
+        //dd($request);
+        try {
+            $results = $apiInstance->cashinGet($xApiVersion, $serviceid);
+            //dd($results[0]['payItemId']);
+            if($results){
+                $apiInstance_quotestd = new InitiateApi(
+                    $client, $config
+                );
+                
+                $bodyAPI = array(
+                    'payItemId' => $results[0]['payItemId'],
+                    'amount' => $sessionValue1['totalAmountAll']
+                );
+                $bodyAPI = json_encode($bodyAPI);
+                $quotestd = $apiInstance_quotestd->quotestdPost($xApiVersion, $bodyAPI);
+                //dd($quotestd['quoteId']);
+                
+                //collect if statement
+                if($quotestd){
+                    $apiInstance_collectstd = new ConfirmApi(
+                        $client, $config
+                    );
+                    //dd(auth()->user());
+                   // dd($sessionValue1);
+                    //dd($this->getService($sessionValue1['pay']));
+                    $body_collectstd = array(
+                        'quoteId' => $quotestd['quoteId'],
+                        'customerPhonenumber' => substr($sessionValue2['receiver'],4),
+                        'customerEmailaddress' => auth()->user()->email,
+                        'customerName' => auth()->user()->first_name.' '.auth()->user()->last_name,
+                        'customerAddress' => auth()->user()->formattedPhone,
+                        'serviceNumber' => substr($sessionValue2['receiver'],4),
+                        'trid' => rand(1,100000000)
+                    );
+                    $body_collectstd = json_encode($body_collectstd);
+                    $collectstd = $apiInstance_collectstd->collectstdPost($xApiVersion, $body_collectstd);
+                    //$data['ptno']    = $collectstd['ptn'];
+                    return $collectstd['ptn'];
+                }
+            }
+
+        } catch (Exception $e) {
+            return "ERROR";
+            //echo 'Exception when calling AccountApi->accountGet: ', $e->getMessage(), PHP_EOL;
+        }
     }
 
     //Send Money - Generate pdf for print
