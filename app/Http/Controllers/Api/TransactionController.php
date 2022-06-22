@@ -11,7 +11,7 @@ use App\Models\{Preference,
 };
 use App\Libraries\Playlist;
 
-
+use Storage;
 use Maviance\S3PApiClient\Service\HealthcheckApi;
 use Maviance\S3PApiClient\Service\AccountApi;
 use Maviance\S3PApiClient\Service\InitiateApi;
@@ -35,11 +35,17 @@ class TransactionController extends Controller
     }
 
     public function getCheckPayStatusApi(Request $request){
-        $paiements = Transaction::where('uuid', $request->ptn)->get()[0];
-        //$paiements = Transaction::where('status', "Pending")->get();
+
+        $content = Request::createFromGlobals()->getContent();
+        
+        return $request->header('x-ptn');
+        Storage::put('test_ici1.txt', json_decode($content)->status);
+        Storage::put('test_ici2.txt', $request->header('x-ptn'));
+
+        $paiements = Transaction::where('uuid', $request->header('x-ptn'))->get()[0];
 
         //return $paiements;
-        if($request->status=="SUCCESS"){
+        if(json_decode($content)->status=="SUCCESS"){
             //return $paiements->id;
             $paiement = Transaction::query()->find($paiements->id);
             $paiement->status = 'Success';
