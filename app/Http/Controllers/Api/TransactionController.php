@@ -38,9 +38,9 @@ class TransactionController extends Controller
 
         $content = Request::createFromGlobals()->getContent();
         
-        return $request->header('x-ptn');
-        Storage::put('test_ici1.txt', json_decode($content)->status);
-        Storage::put('test_ici2.txt', $request->header('x-ptn'));
+        //return $request->header('x-ptn');
+        Storage::put('test_ici.txt', json_decode($content)->status);
+        Storage::put('test_icii.txt', $request->header('x-ptn'));
 
         $paiements = Transaction::where('uuid', $request->header('x-ptn'))->get()[0];
 
